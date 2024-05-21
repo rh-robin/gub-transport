@@ -16,13 +16,12 @@ return new class extends Migration
             $table->string('gub_id')->unique();
             $table->string('name');
             $table->string('image')->nullable();
-            //$table->string('gub_id_image')->nullable();
-            $table->string('user_type')->nullable();
+            $table->string('gub_id_image')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            //$table->boolean('varified')->default(0)->comment('1:Varified; 0:Unvarified');
+            $table->boolean('varified')->default(0)->comment('1:Varified; 0:Unvarified');
             $table->boolean('status')->default(1)->comment('1:Active; 0:Inactive');
             $table->rememberToken();
             $table->timestamps();

@@ -80,8 +80,14 @@
                             <a class="nav-link" href="{{ url('/dashboard') }}">Dashboard</a>
                         </li>
                         @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Login
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ route('login') }}">Student/Faculty</a></li>
+                                <li><a class="dropdown-item" href="{{ route('driver.login') }}">Driver</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">Register</a>

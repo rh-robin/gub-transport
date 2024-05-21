@@ -13,6 +13,17 @@ return new class extends Migration
     {
         Schema::create('drivers', function (Blueprint $table) {
             $table->id();
+            $table->string('gub_id')->unique();
+            $table->string('name');
+            $table->string('image')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->string('password');
+            $table->string('token')->nullable();
+            $table->string('license_no')->nullable();
+            $table->string('license_image')->nullable();
+            $table->string('address')->nullable();
+            $table->boolean('status')->default(1)->comment('1:Active; 0:Inactive');
             $table->timestamps();
         });
     }

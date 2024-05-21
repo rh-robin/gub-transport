@@ -43,9 +43,23 @@
           </ul>
         </li>  --}}
 
+        <li class="treeview {{ ($prefix === '/route') ? 'active' : '' }}">
+          <a href="#">
+            <i class="fa-solid fa-user"></i>
+            <span>Route</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ ($route === 'admin.route.view') ? 'active' : '' }}"><a href="{{ route('admin.route.view') }}"><i class="ti-more"></i>All Routes</a></li>
+            <li class="{{ ($route === 'admin.route.add') ? 'active' : '' }}"><a href="{{ route('admin.route.add') }}"><i class="ti-more"></i>Add Route</a></li>
+          </ul>
+        </li> 
+
         <li class="treeview {{ ($prefix === '/users') ? 'active' : '' }}">
           <a href="#">
-            <i class="fa-solid fa-handshake"></i>
+            <i class="fa-solid fa-user"></i>
             <span>User</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
@@ -54,6 +68,41 @@
           <ul class="treeview-menu">
             <li class="{{ ($route === 'user.view') ? 'active' : '' }}"><a href="{{ route('user.view') }}"><i class="ti-more"></i>All Users</a></li>
           </ul>
+        </li> 
+
+        <li class="treeview {{ ($prefix === '/driver') ? 'active' : '' }}">
+          <a href="#">
+            <i class="fa-solid fa-user"></i>
+            <span>Driver</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ ($route === 'admin.driver.view') ? 'active' : '' }}"><a href="{{ route('admin.driver.view') }}"><i class="ti-more"></i>All Drivers</a></li>
+          </ul>
+        </li> 
+
+
+        <li class="treeview {{ ($prefix === '/vehicle') ? 'active' : '' }}">
+          <a href="#">
+            <i class="fa-solid fa-user"></i>
+            <span>Vehicle</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ ($route === 'admin.vehicle.view') ? 'active' : '' }}"><a href="{{ route('admin.vehicle.view') }}"><i class="ti-more"></i>All Vehicles</a></li>
+          </ul>
+        </li> 
+
+
+        <li class="{{ ($route === 'admin.area.view') ? 'active' : '' }}">
+          <a href="{{ route('admin.area.view') }}">
+            <i class="fa-solid fa-user"></i>
+            <span>Pickup Areas</span>
+          </a>
         </li> 
 
         
