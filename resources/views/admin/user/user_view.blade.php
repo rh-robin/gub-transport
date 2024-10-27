@@ -24,7 +24,7 @@
 
 <section class="content">
     <div class="row">
-        <div class="col-8">
+        <div class="col-12">
 
             <div class="box">
                <div class="box-header with-border">
@@ -68,75 +68,6 @@
 
                       
         </div> {{-- end col-8 --}}
-        <div class="col-4">
-
-            <div class="box">
-               <div class="box-header with-border">
-                 <h3 class="box-title">Add User</h3>
-               </div>
-               <!-- /.box-header -->
-               <div class="box-body">
-                   <form method="POST" action="" enctype="multipart/form-data">
-                    @csrf
-                        <div class="form-group">
-                            <h5>ID <span class="text-danger">*</span></h5>
-                            <div class="controls">
-                                <input type="text" name="gub_id" value="{{ old('gub_id') }}" class="form-control"> <div class="help-block"></div></div>
-                            @error('gub_id')
-                            <div class="form-control-feedback"><small class="text-danger">{{ $message }}</small></div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <h5>User Name <span class="text-danger">*</span></h5>
-                            <div class="controls">
-                                <input type="text" name="name" value="{{ old('name') }}" class="form-control"> <div class="help-block"></div></div>
-                            @error('name')
-                            <div class="form-control-feedback"><small class="text-danger">{{ $message }}</small></div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <h5>User Type <span class="text-danger">*</span></h5>
-                            <div class="controls">
-                                <input type="text" name="user_type" value="{{ old('user_type') }}" class="form-control"> <div class="help-block"></div></div>
-                            @error('user_type')
-                            <div class="form-control-feedback"><small class="text-danger">{{ $message }}</small></div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <h5>Phone Number <span class="text-danger">*</span></h5>
-                            <div class="controls">
-                                <input type="text" name="phone" value="{{ old('phone') }}" class="form-control"> <div class="help-block"></div></div>
-                            @error('phone')
-                            <div class="form-control-feedback"><small class="text-danger">{{ $message }}</small></div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <h5>Email <span class="text-danger">*</span></h5>
-                            <div class="controls">
-                                <input type="text" name="email" value="{{ old('email') }}" class="form-control"> <div class="help-block"></div></div>
-                            @error('email')
-                            <div class="form-control-feedback"><small class="text-danger">{{ $message }}</small></div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <h5>User Image <span class="text-danger">*</span></h5>
-                            <div class="controls">
-                                <input type="file" name="image" class="form-control"> <div class="help-block"></div></div>
-                            @error('image')
-                            <div class="form-control-feedback"><small class="text-danger">{{ $message }}</small></div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New">
-                        </div>
-                   </form>
-               </div>
-               <!-- /.box-body -->
-             </div>
-             <!-- /.box -->
-
-                      
-        </div> {{-- end col-4 --}}
     </div> {{-- end row --}}
 
 </section>

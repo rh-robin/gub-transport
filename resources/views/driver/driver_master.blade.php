@@ -8,8 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"
-        integrity="sha384-cmCGPRstySLBdjs6Xm7OQDJbOIuBHCW5PYKhehsADLJ3h8tHnTvPzamxLFsN9b4C" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         
         .image img{
@@ -59,7 +58,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{{ asset('images/avatar.png') }}" alt="Logo" width="30px" style="border-radius: 50%">
+                            <img src="{{ !empty($driver->image) ? asset($driver->image) : url('upload/noimage.jpg') }}" alt="Logo" width="30px" style="border-radius: 50%">
                             {{ $driver->name }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

@@ -82,7 +82,9 @@ class DriverController extends Controller
             'name' => 'required',
             'phone' => 'required',
             'license_no' => [
-                Rule::unique('drivers', 'license_no')->ignore($driver->id),
+                Rule::unique('drivers', 'license_no')->where(function ($query) {
+                    return $query->whereNotNull('license_no');
+                })->ignore($driver->id),
             ],
             'image' => 'nullable|mimes:jpg,png,jpeg',
             'license_image' => 'nullable|mimes:jpg,png,jpeg',
@@ -95,7 +97,7 @@ class DriverController extends Controller
         $driver->email = $request->email;
         $driver->license_no = $request->license_no;
         $driver->address = $request->address;
-        $driver->password = Hash::make('12345678');
+        //$driver->password = Hash::make('12345678');
 
         if($request->file('image')){
             if($driver->image){

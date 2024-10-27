@@ -9,10 +9,22 @@ use Auth;
 use App\Models\Admin;
 use App\Mail\WebsiteMail;
 
+
+use App\Models\Route;
+use App\Models\PickupArea;
+use App\Models\Vehicle;
+use App\Models\VehicleInRoute;
+use App\Models\Driver;
+use App\Models\RequestedSlot;
+
 class AdminController extends Controller
 {
     public function dashboard(){
-        return view('admin.index');
+        $numberOfRoutes = Route::count();
+        $numberOfVehicles = Vehicle::count();
+        $numberOfDrivers = Driver::count();
+        $numberOfRequest = RequestedSlot::select('pickup_point', 'class_time', 'days')->groupBy('pickup_point', 'class_time', 'days')->get()->count();
+        return view('admin.index', compact('numberOfRoutes', 'numberOfVehicles', 'numberOfDrivers', 'numberOfRequest'));
     }
 
     public function login(){

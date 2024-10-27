@@ -102,7 +102,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add Driver">
+                            <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update Driver">
                         </div>
                    </form>
                </div>

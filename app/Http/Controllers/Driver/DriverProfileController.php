@@ -6,11 +6,30 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 
+use App\Models\Route;
+use App\Models\PickupArea;
+use App\Models\Vehicle;
+use App\Models\VehicleInRoute;
+use App\Models\Driver;
+
 class DriverProfileController extends Controller
 {
     public function dashboard(){
         $driver = Auth::guard('driver')->user();
-        return view('driver.dashboard', compact('driver'));
+
+        $vehicles = Vehicle::where('driver_id', $driver->id)->get();
+        $vehicleIds = $vehicles->pluck('id');
+        $routeVehicles = VehicleInRoute::with('route')
+                                    ->whereIn('vehicle_id', $vehicleIds)
+                                    ->get();
+
+        // Extract the routes from the routeVehicles
+        $routes = $routeVehicles->map(function ($routeVehicle) {
+            return $routeVehicle->route;
+        })->unique('id');
+        
+        
+        return view('driver.dashboard', compact('driver', 'routes', 'vehicles', 'routeVehicles'));
     }
 
     public function login(){

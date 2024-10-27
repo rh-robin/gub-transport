@@ -17,9 +17,11 @@ return new class extends Migration
             $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
             $table->unsignedBigInteger('vehicle_id');
             $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
-            $table->string('from')->nullable();
-            $table->string('time')->nullable();
-            $table->string('duration')->nullable();
+            $table->unsignedBigInteger('pickup_area_id');
+            $table->foreign('pickup_area_id')->references('id')->on('pickup_areas')->onDelete('cascade');
+            $table->string('pickup_time')->nullable();
+            $table->string('arrive_time')->nullable();
+            $table->string('days')->nullable();
             $table->timestamps();
         });
     }

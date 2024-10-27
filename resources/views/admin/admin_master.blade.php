@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="../images/favicon.ico">
 
     <title>Flipmart - Dashboard</title>
@@ -18,6 +20,52 @@
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Select2 CSS -->
+  {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+ --}}
+
+  <style>
+    input::placeholder {
+      color: #8a99b5 !important; /* Change this color to your desired placeholder color */
+      opacity: 1; /* This is optional, default is 1 */
+    }
+    .select2-selection__placeholder{
+      color: #8a99b5 !important;
+    }
+    /* Custom background color for Select2 dropdown */
+    .select2-container--default .select2-selection--single {
+        background-color: #272e48; 
+        color: #fff;  
+        border: 1px solid rgba(255, 255, 255, 0.12); 
+    }
+
+    /* Custom background color for the dropdown options */
+    .select2-container--default .select2-results__option {
+        background-color: #272e48; /* Dark background color for the options */
+        color: #fff;      
+        border: none;
+    }
+
+    /* Custom background color for the highlighted (hovered) option */
+    .select2-container--default .select2-results__option--highlighted {
+        background-color: #272e48; /* Darker background color for the highlighted option */
+        color: #fff; 
+        border: none;
+    }
+
+    /* Custom background color for the search box */
+    .select2-container--default .select2-search--dropdown .select2-search__field {
+        background-color: #272e48; /* Dark background color for the search box */
+        color: #fff;           /* Text color for the search box */
+    }
+    .select2-selection__rendered{
+      color: #8a99b5 !important;
+    }
+
+  </style>
+
+    @stack('styles')
      
   </head>
 
@@ -133,6 +181,18 @@
   </script>
 
 
+  <!-- ============== Select2 JS ================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+
+{{-- ======= ajax ============ --}}
+<script>
+  $.ajaxSetup({
+  headers:{
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+})
+</script>
 	
 	
 </body>

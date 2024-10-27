@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('routes', function (Blueprint $table) {
+        Schema::create('user_site_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('route_name');
-            $table->unsignedBigInteger('main_departure')->nullable();
-            $table->foreign('main_departure')->references('id')->on('pickup_areas')->onDelete('set null');
-            $table->text('instruction')->nullable();
+            $table->string("preselection")->default("off");
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('routes');
+        Schema::dropIfExists('user_site_settings');
     }
 };

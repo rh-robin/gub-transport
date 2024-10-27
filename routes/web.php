@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\DriverController;
 use App\Http\Controllers\Admin\VehicleController;
 use App\Http\Controllers\Admin\AreaController;
 use App\Http\Controllers\Admin\RouteController;
+use App\Http\Controllers\Admin\PreSelectionController;
 
 
 /* driver  */
@@ -24,9 +25,16 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/route/{id}', [ProfileController::class, 'routeView'])->name('user.route.view');
+    Route::get('/find-vehicle', [ProfileController::class, 'findVehicle'])->name('user.findVehicle');
+    Route::post('/find-vehicle', [ProfileController::class, 'findVehicleSubmit'])->name('user.findVehicle.submit');
+    Route::get('/preselection', [ProfileController::class, 'preSelection'])->name('user.preselection');
+    Route::post('/preselection-submit', [ProfileController::class, 'preSelectionSubmit'])->name('user.preselection.submit');
+    Route::get('/profile', [ProfileController::class, 'profileView'])->name('user.profile.view');
+    Route::post('/profile-submit', [ProfileController::class, 'profileSubmit'])->name('user.profile.submit');
+    Route::get('/change-password', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile-update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile-delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';
@@ -73,12 +81,20 @@ Route::middleware('admin')->prefix('admin')->group(function () {
         Route::post('/update/{id}', [RouteController::class, 'update'])->name('admin.route.update');
         Route::get('/edit/{id}', [RouteController::class, 'edit'])->name('admin.route.edit');
         Route::get('/delete/{id}', [RouteController::class, 'delete'])->name('admin.route.delete');
+        Route::post('/vehicle/check-availability', [RouteController::class, 'availability']);
+    });
+
+    /* routes for preselection and slot request */
+    Route::prefix('preselection')->group(function () {
+        Route::get('/selections', [PreSelectionController::class, 'selectionView'])->name('admin.selection.view');
+        Route::get('/selection-on-off', [PreSelectionController::class, 'selectionOnOff']);
+        Route::get('/request', [PreSelectionController::class, 'requestView'])->name('admin.request.view');
     });
 });
 
 Route::prefix('admin')->group(function () {
-    Route::get('/login', [AdminController::class, 'login'])->name('admin.login');
-    Route::post('/login-submit', [AdminController::class, 'login_submit'])->name('admin.login_submit');
+    Route::get('/login', [AdminController::class, 'login'])->name('admin.login')->middleware('guest:admin');
+    Route::post('/login-submit', [AdminController::class, 'login_submit'])->name('admin.login_submit')->middleware('guest:admin');
     Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::get('/forget-password', [AdminController::class, 'forgetPassword'])->name('admin.forgetPassword');
     Route::post('/forget-password_submit', [AdminController::class, 'forgetPassword_submit'])->name('admin.forgetPassword_submit');
@@ -92,8 +108,8 @@ Route::prefix('admin')->group(function () {
 
 /* =================== Driver routes ================ */
 Route::prefix('driver')->group(function () {
-    Route::get('/login', [DriverProfileController::class, 'login'])->name('driver.login');
-    Route::post('/login-submit', [DriverProfileController::class, 'login_submit'])->name('driver.login_submit');
+    Route::get('/login', [DriverProfileController::class, 'login'])->name('driver.login')->middleware('guest:driver');
+    Route::post('/login-submit', [DriverProfileController::class, 'login_submit'])->name('driver.login_submit')->middleware('guest:driver');
 });
 Route::middleware('driver')->prefix('driver')->group(function () {
     Route::get('/dashboard', [DriverProfileController::class, 'dashboard'])->name('driver.dashboard');
